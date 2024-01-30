@@ -7,7 +7,7 @@ metadata:
     app: psql
 spec:
   # Add replicas
-  replicas: 
+  replicas: 3
   selector: 
     matchLabels:
       app: psql
@@ -21,7 +21,7 @@ spec:
         image: postgres:latest
         ports:
         # Add port
-        - containerPort: 
+        - containerPort: 5432
         env:
         - name: POSTGRES_USER
           value: 'User'
