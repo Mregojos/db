@@ -1,3 +1,4 @@
+cat > psql/psql-deployment.yaml << EOF
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -26,3 +27,4 @@ spec:
           value: 'User'
         - name: POSTGRES_PASSWORD
           value: 'password'
+EOF
