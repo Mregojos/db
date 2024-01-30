@@ -8,14 +8,12 @@ sh manifest/deployment.sh
 sh psql/psql-deployment.sh
 # Apply
 kubectl apply -f psql/psql-deployment.yaml
-# Watch
-watch kubectl get all
 # Expose
 kubectl expose deployment.apps/psql-deployment
+# Port-forwarding
+kubectl port-forward psql-deployment : --address 
 # Watch
 watch kubectl get all
-# Port-forwarding
-kubectl port-forward service/psql-deployment : --address 
 
 # Create a firewall
 sh firewall.sh
