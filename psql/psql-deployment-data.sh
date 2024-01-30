@@ -1,4 +1,4 @@
-cat > psql/psql-deployment.yaml << EOF
+cat > psql/psql-deployment-data.yaml << EOF
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -16,6 +16,10 @@ spec:
       labels:
         app: psql
     spec:
+      volumes:
+      - name: postgres-data
+        hostPath:
+          path: /
       containers:
       - name: postgres
         image: postgres:latest
@@ -27,4 +31,7 @@ spec:
           value: 'User'
         - name: POSTGRES_PASSWORD
           value: 'password'
+        volumeMounts:
+        - name: postgres-data
+          mountPath: /var/lib/postgresql/data
 EOF
