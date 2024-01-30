@@ -1,4 +1,4 @@
-cat > psql.yaml << EOF
+cat > psql-deployment.yaml << EOF
 apiVersion: apps/v1
 kind: Deployment
 metadata:
