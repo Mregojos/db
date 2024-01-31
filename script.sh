@@ -27,7 +27,7 @@ kubectl apply -f psql/psql-deployment-service.yaml
 # Expose
 # kubectl expose deployment.apps/psql-deployment
 
-# Port-forwarding
+# Port-forwarding (Another terminal)
 kubectl port-forward service/psql-service $DB_PORT:$TARGET_PORT --address $ADDRESS
 
 # Watch
@@ -35,6 +35,9 @@ watch kubectl get all
 
 # Test the DB
 make run_test
+
+# Using kubectl exec
+kubectl exec -it <POD_NAME or DEPLOYMENT_NAME> -- psql -U $DB_USER
 
 # Delete
 kubectl delete deployment/psql-deployment
