@@ -1,4 +1,5 @@
 cat > mdb/mdb-statefulset.yaml << EOF
+# MariaDB Statefulset
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
@@ -6,7 +7,6 @@ metadata:
   labels: 
     app: mdb
 spec:
-  # Add replicas
   replicas: 3
   selector: 
     matchLabels:
@@ -21,7 +21,6 @@ spec:
         persistentVolumeClaim:
           claimName: mdb-data
       containers:
-      # Image and Port
       - name: mariadb
         image: mariadb:latest
         # Add port
@@ -55,6 +54,7 @@ spec:
           mountPath: /var/lib/mysql
 
 ---
+# Persistent Volume Claim
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -68,6 +68,7 @@ spec:
       storage: 1Gi
       
 ---
+# Cluster IP Serive
 apiVersion: v1
 kind: Service
 metadata:
