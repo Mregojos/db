@@ -55,19 +55,18 @@ kubectl exec -it $(kubectl get statefulset -o name) -- mariadb -h localhost -u $
 # List database
 SHOW DATABASES;
 # Use Database
-USE <DB_NAME>;
+# USE <DB_NAME>;
+USE user;
 # List Table
 SHOW TABLES;
-# List Table Poperties
-
-# Connect
-
+# CREATE a TABLE
+CREATE TABLE INFO (NAME VARCHAR());
 # List rows
 
 
 # Check the data in kubectl
 kubectl exec -it $(kubectl get statefulset -o name) -- sh
-cd <...>
+cd /var/lib/mysql
 
 # Delete statefulset
 kubectl delete $(kubectl get statefulset -o name)
@@ -76,10 +75,12 @@ kubectl delete $(kubectl get statefulset -o name)
 kubectl apply -f mdb/mdb-statefulset.yaml
 # Using kubectl exec
 # Execute a command to a conatiner
-kubectl exec -it $(kubectl get statefulset -o name) -- <...>
-# Connect
-
-# List rows
+kubectl exec -it $(kubectl get statefulset -o name) -- mariadb -h localhost -u $DB_USER -p
+# password
+# USE <DB_NAME>;
+USE user;
+# List Table
+SHOW TABLES;
 
 
 # To see where pvc and pv data store
