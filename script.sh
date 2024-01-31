@@ -49,6 +49,7 @@ kubectl delete deployment/psql-deployment
 kubectl delete service/psql-service
 
 #---------------- Option B: Using Statefulset ----------------------------#
+# It's working.
 # Stateful Kind
 sh psql/psql-statefulset.sh
 
@@ -127,8 +128,7 @@ kubectl exec -it $(kubectl get statefulset -o name) -- pg_dump -U $DB_USER -d us
 kubectl delete $(kubectl get statefulset -o name)
 kubectl delete service/psql-service
 kubectl delete $(kubectl get persistentvolume -o name)
-kubectl delete $(kubectl get persistentvolumeclaim -o name) --force
-
+kubectl delete $(kubectl get persistentvolumeclaim -o name) # --force
 
 
 #----------- Cleanu Up ----------------------#
