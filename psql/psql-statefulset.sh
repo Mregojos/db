@@ -2,7 +2,7 @@ cat > psql/psql-statefulset.yaml << EOF
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: psql-deployment
+  name: psql-statefulset
   labels: 
     app: psql
 spec:

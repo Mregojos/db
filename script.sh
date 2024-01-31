@@ -95,8 +95,8 @@ SELECT * FROM <TABLE_NAME>;
 kubectl exec -it $(kubectl get statefulset -o name) -- sh
 cd var/lib/post*/data
 
-# Delee statefulset
-kubectl delete statefulset/psql-deployment
+# Delete statefulset
+kubectl delete $(kubectl get statefulset -o name)
 
 # Apply to see if the data persist
 kubectl apply -f psql/psql-statefulset.yaml
@@ -108,11 +108,13 @@ kubectl exec -it $(kubectl get statefulset -o name) -- psql -U $DB_USER
 # List rows
 SELECT * FROM <TABLE_NAME>;
 
+# Backup the data
+
 
 # Delete Persistent Volume
-kubectl delete statefulset/psql-deployment
-kubectl delete persistentvolume
-kubectl delete persistentvolumeclaim
+kubectl delete $(kubectl get statefulset -o name)
+kubectl delete $(kubectl get persistentvolume -o name)
+kubectl delete $(kubectl get persistentvolumeclaim -o name)
 
 
 
