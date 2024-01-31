@@ -1,0 +1,105 @@
+# MariaDB Database Kubernetes Manifest
+# This Kubernetes Manifest defines a stateful deployment for a MariaDB Database with three replica pods, using the latest MariaDB image.
+# It includes Persistent Volume Claim for data synchronization and a ClusterIp service for internal accessibility within the kubernetes cluster.
+# Database credentials are stored in secret to maintain secure configuration.
+# This setup allows for a scalable and highly available MariaDB Database Deployment.
+
+# StatefulSet
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mdb-statefulset
+  labels: 
+    app: mdb
+spec:
+  replicas: 3
+  selector: 
+    matchLabels:
+      app: mdb
+  template:
+    metadata: 
+      labels:
+        app: mdb
+    spec:
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: mdb-data
+      containers:
+      - name: mariadb
+        image: mariadb:latest
+        ports:
+        - containerPort: 3306
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef: 
+              name: my-secret
+              key: MYSQL_ROOT_PASSWORD
+        - name: MYSQL_DATABASE
+          valueFrom:
+            secretKeyRef: 
+              name: my-secret
+              key: MYSQL_DATABASE
+        - name: MYSQL_USER
+          valueFrom:
+            secretKeyRef: 
+              name: my-secret
+              key: MYSQL_USER
+        - name: MYSQL_PASSWORD
+          valueFrom:
+            secretKeyRef: 
+              name: my-secret
+              key: MYSQL_PASSWORD
+        - name: MDATA
+          value: /var/lib/mysql
+        volumeMounts:
+        - name: data
+          mountPath: /var/lib/mysql
+
+---
+# Persistent Volume Claim
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mdb-data
+spec:
+  storageClassName: standard
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+      
+---
+# Cluster IP Serive
+apiVersion: v1
+kind: Service
+metadata:
+  name: mdb-service
+  labels: 
+    app: mdb
+spec:
+  type: ClusterIP
+  selector: 
+    app: mdb
+  ports:
+  - port: 3306
+    targetPort: 3306
+    
+ 
+# --------- 
+# To deploy
+# Use Minikube Cluster
+
+# Create a secret 
+# kubectl create secret generic my-secret --from-literal=MYSQL_ROOT_PASSWORD=password --from-literal=MYSQL_DATABASE=user_db --from-literal=MYSQL_USER=user --from-literal=MYSQL_PASSWORD=password  --type=Opaque 
+    
+# Apply
+# kubectl apply -f mariadb-statefulset.yaml
+
+# list all kubernetes objects
+# kubectl get all
+# kubectl get persistentvolume
+# kubectl get persistentvolumeclaim
+# kubectl get statefulset
