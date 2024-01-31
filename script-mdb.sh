@@ -94,8 +94,9 @@ sudo su
 cd /tmp/...
 
 # Backup the data
-# pgdump
-kubectl exec -it $(kubectl get statefulset -o name) -- <...>
+kubectl exec -it $(kubectl get statefulset -o name) -- sh
+# mysql
+mysqldump -u user --databases user -p > backup.sql
 
 # Delete Persistent Volume
 kubectl delete $(kubectl get statefulset -o name)
