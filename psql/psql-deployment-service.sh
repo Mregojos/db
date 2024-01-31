@@ -1,4 +1,5 @@
 cat > psql/psql-deployment.yaml << EOF
+# Deployment
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -27,4 +28,21 @@ spec:
           value: 'user'
         - name: POSTGRES_PASSWORD
           value: 'password'
+
+---
+# Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: psql-service
+  labels: 
+    app: psql
+spec:
+  type: ClusterIP
+  selector: 
+    app: psql
+  ports:
+  - port: 5432
+    targetPort: 5432
+
 EOF
