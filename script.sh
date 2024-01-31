@@ -68,6 +68,7 @@ kubectl get statefulset
 
 # Port-forwarding (Another terminal)
 kubectl port-forward service/psql-service $DB_PORT:$TARGET_PORT --address $ADDRESS
+
 # Test the DB
 make run_test
 
@@ -113,8 +114,9 @@ SELECT * FROM <TABLE_NAME>;
 
 # Delete Persistent Volume
 kubectl delete $(kubectl get statefulset -o name)
+kubectl delete service/psql-service
 kubectl delete $(kubectl get persistentvolume -o name)
-kubectl delete $(kubectl get persistentvolumeclaim -o name)
+kubectl delete $(kubectl get persistentvolumeclaim -o name) --force
 
 
 
