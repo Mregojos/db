@@ -22,6 +22,9 @@ sh firewall.sh
 # Stateful Kind
 sh mdb/mdb-statefulset.sh
 
+# Create a secret 
+kubectl create secret generic my-secret --from-literal=MYSQL_ROOT_PASSWORD=password --from-literal=MYSQL_DATABASE=user_db --from-literal=MYSQL_USER=user --from-literal=MYSQL_PASSWORD=password  --type=Opaque 
+    
 # Apply
 kubectl apply -f mdb/mdb-statefulset.yaml
 
@@ -95,9 +98,9 @@ cd /tmp/...
 
 # Backup the data
 kubectl exec -it $(kubectl get statefulset -o name) -- sh
-# mysql
-mysqldump -u user --databases user -p > backup.sql
-kubectl cp <...>
+# --- mysql
+# mysqldump -u user --databases user -p > backup.sql
+# kubectl cp <...>
 
 # Delete Persistent Volume
 kubectl delete $(kubectl get statefulset -o name)
