@@ -17,6 +17,10 @@ kubectl port-forward service/psql-service : --address
 # Watch
 watch kubectl get all
 
+# Test the DB
+make run_test
+
+
 # Create a firewall
 sh firewall.sh
 # Delete the firewall
