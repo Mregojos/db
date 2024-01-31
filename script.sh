@@ -40,6 +40,10 @@ make run_test
 # Execute a command to a conatiner
 kubectl exec -it $(kubectl get deployment -o name) -- psql -U $DB_USER
 
+# Check the data in kubectl
+kubectl exec -it $(kubectl get deployment -o name) -- sh
+cd var/lib/post*/data
+
 # Delete
 kubectl delete deployment/psql-deployment
 kubectl delete service/psql-service
