@@ -49,6 +49,11 @@ kubectl delete deployment/psql-deployment
 kubectl delete service/psql-service
 
 #---------------- Option B: Using Statefulset ----------------------------#
+# Stateful Kind
+sh psql/psql-statefulset.sh
+
+# Apply
+kubectl apply -f psql/psql-statefulset.yaml
 
 
 #----------- Cleanu Up ----------------------#
