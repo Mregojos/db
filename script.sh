@@ -89,13 +89,30 @@ kubectl exec -it $(kubectl get statefulset -o name) -- psql -U $DB_USER
 # Connect
 \connect <DB or USER>
 # List rows
-SELECT * FROM `<TABLE_NAME>`;
+SELECT * FROM <TABLE_NAME>;
 
 # Check the data in kubectl
 kubectl exec -it $(kubectl get statefulset -o name) -- sh
 cd var/lib/post*/data
 
+# Delee statefulset
+kubectl delete statefulset/psql-deployment
 
+# Apply to see if the data persist
+kubectl apply -f psql/psql-statefulset.yaml
+# Using kubectl exec
+# Execute a command to a conatiner
+kubectl exec -it $(kubectl get statefulset -o name) -- psql -U $DB_USER
+# Connect
+\connect <DB or USER>
+# List rows
+SELECT * FROM <TABLE_NAME>;
+
+
+# Delete Persistent Volume
+kubectl delete statefulset/psql-deployment
+kubectl delete persistentvolume
+kubectl delete persistentvolumeclaim
 
 
 
