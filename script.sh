@@ -78,6 +78,20 @@ kubectl port-forward $(kubectl get pod -o name | head -$FIRST) $DB_PORT:$TARGET_
 kubectl port-forward $(kubectl get pod -o name | head -$FIRST) $DB_PORT_SECOND:$TARGET_PORT --address $ADDRESS
 
 
+# Using kubectl exec
+# Execute a command to a conatiner
+kubectl exec -it $(kubectl get statefulset -o name) -- psql -U $DB_USER
+# List database
+\l
+# List Table
+\d 
+# List Table Poperties
+\d <TABLE_NAME>
+# Connect
+\connect <DB or USER>
+# List rows
+SELECT * FROM `<TABLE_NAME>`;
+
 
 
 
