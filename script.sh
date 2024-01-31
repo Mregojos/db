@@ -37,7 +37,8 @@ watch kubectl get all
 make run_test
 
 # Using kubectl exec
-kubectl exec -it <POD_NAME or DEPLOYMENT_NAME> -- psql -U $DB_USER
+# Execute a command to a conatiner
+kubectl exec -it $(kubectl get deployment -o name) -- psql -U $DB_USER
 
 # Delete
 kubectl delete deployment/psql-deployment
