@@ -1,4 +1,3 @@
-cat > psql/psql-deployment-service.yaml << EOF
 # Deployment
 apiVersion: apps/v1
 kind: Deployment
@@ -45,4 +44,3 @@ spec:
   - port: 5432
     targetPort: 5432
 
-EOF
