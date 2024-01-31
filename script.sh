@@ -59,6 +59,25 @@ kubectl apply -f psql/psql-statefulset.yaml
 kubectl get all
 kubectl get persistentvolume
 kubectl get persistentvolumeclaim
+kubectl get statefulset
+
+# Get the first pod
+# kubectl get pod -o name | head -$FIRST
+# Get the second pod
+# kubectl get pod -o name | grep ".*-$FIRST"
+
+# Port-forwarding (Another terminal)
+kubectl port-forward service/psql-service $DB_PORT:$TARGET_PORT --address $ADDRESS
+# Test the DB
+make run_test
+
+# Port-forwarding using pods
+# First Pod
+kubectl port-forward $(kubectl get pod -o name | head -$FIRST) $DB_PORT:$TARGET_PORT --address $ADDRESS
+# Second Pod
+kubectl port-forward $(kubectl get pod -o name | head -$FIRST) $DB_PORT_SECOND:$TARGET_PORT --address $ADDRESS
+
+
 
 
 
