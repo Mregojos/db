@@ -10,6 +10,12 @@ source env.sh
 # Create a firewall
 sh firewall.sh
 
+# Test Deployment Kind
+# sh mdb/mdb-deployment-service.sh
+# Apply
+# kubectl apply -f mdb/mdb-deployment-service.yaml
+# kubectl get all && kubectl delete $(kubectl get deployment -o name) && kubectl delete service/mdb-service && kubectl get all
+
 #---------------------- FOR MDB --------------------#
 
 #---------------- Option B: Using Statefulset ----------------------------#
@@ -17,7 +23,7 @@ sh firewall.sh
 sh mdb/mdb-statefulset.sh
 
 # Apply
-kubectl apply -f pmdb/mdb-statefulset.yaml
+kubectl apply -f mdb/mdb-statefulset.yaml
 
 # Using kubectl get <>
 kubectl get all
