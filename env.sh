@@ -6,6 +6,7 @@ export DB_PORT=11000
 export DB_PORT_SECOND=12000
 export DB_PASSWORD="password"
 export TARGET_PORT=5432
+export MDB_TARGET_PORT=
 export ADDRESS="0.0.0.0"
 export FIRST=1
 export SECOND=2

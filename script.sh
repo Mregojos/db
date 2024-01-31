@@ -10,6 +10,8 @@ source env.sh
 # Create a firewall
 sh firewall.sh
 
+#------------------------- FOR PSQL -------------------------------#
+
 #---------------- Option A: Using Deployment ----------------------#
 # It's working.
 # Create a sample psql.yaml (Deployment Kind)
