@@ -50,11 +50,14 @@ kubectl port-forward $(kubectl get pod -o name | head -$FIRST) $DB_PORT_SECOND:$
 
 # Using kubectl exec
 # Execute a command to a conatiner
-kubectl exec -it $(kubectl get statefulset -o name) -- <...>
+kubectl exec -it $(kubectl get statefulset -o name) -- mariadb -h localhost -u $DB_USER -p
+# password
 # List database
-
+SHOW DATABASES;
+# Use Database
+USE <DB_NAME>;
 # List Table
-
+SHOW TABLES;
 # List Table Poperties
 
 # Connect
