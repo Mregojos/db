@@ -22,20 +22,20 @@ spec:
           claimName: mdb-data
       containers:
       # Image and Port
-      - name: 
-        image: :latest
+      - name: mariadb
+        image: mariadb:latest
         # Add port
-        - containerPort: 
+        - containerPort: 3306
         env:
-        - name: 
+        - name: MYSQL_ROOT_USER
           value: 'user'
-        - name: 
+        - name: MYSQL_ROOT_PASSWORD
           value: 'password'
         - name: MDATA
-          value: 
+          value: /var/lib/mysql
         volumeMounts:
         - name: data
-          mountPath: 
+          mountPath: /var/lib/mysql
 
 ---
 apiVersion: v1
@@ -62,6 +62,6 @@ spec:
   selector: 
     app: mdb
   ports:
-  - port: 
-    targetPort: 
+  - port: 3306
+    targetPort: 3306
 EOF
