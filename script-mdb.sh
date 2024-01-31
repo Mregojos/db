@@ -105,7 +105,6 @@ kubectl delete service/mdb-service
 kubectl delete $(kubectl get persistentvolume -o name)
 kubectl delete $(kubectl get persistentvolumeclaim -o name) # --force
 
-
 #----------- Cleanu Up ----------------------#
 
 # Delete the firewall
