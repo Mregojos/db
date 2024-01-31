@@ -109,6 +109,16 @@ kubectl exec -it $(kubectl get statefulset -o name) -- psql -U $DB_USER
 # List rows
 SELECT * FROM <TABLE_NAME>;
 
+# To see where pvc and pv data store
+kubectl describe pvc
+kubectl describe pv
+# Find Source Path : /tmp/...
+# Open Minikube Cluster SSH
+minikube ssh
+cd /
+sudo su
+cd /tmp/...
+
 # Backup the data
 
 
