@@ -35,10 +35,6 @@ spec:
         volumeMounts:
         - name: data
           mountPath: /var/lib/postgresql/data
-          
-
-
-# kubectl exec -it <deployment name> -- psql -U User -d postgres
 
 ---
 apiVersion: v1
