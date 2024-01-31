@@ -90,7 +90,7 @@ spec:
  
 #-------- To deploy --------#
 # For development use Minikube Cluster
-# Create a secret 
+# Create secret 
 # kubectl create secret generic my-secret --from-literal=MYSQL_ROOT_PASSWORD=password --from-literal=MYSQL_DATABASE=user_db --from-literal=MYSQL_USER=user --from-literal=MYSQL_PASSWORD=password --type=Opaque    
 # kubectl apply -f mariadb-statefulset.yaml
 
