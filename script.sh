@@ -77,7 +77,6 @@ kubectl port-forward $(kubectl get pod -o name | head -$FIRST) $DB_PORT:$TARGET_
 # Second Pod
 kubectl port-forward $(kubectl get pod -o name | head -$FIRST) $DB_PORT_SECOND:$TARGET_PORT --address $ADDRESS
 
-
 # Using kubectl exec
 # Execute a command to a conatiner
 kubectl exec -it $(kubectl get statefulset -o name) -- psql -U $DB_USER
@@ -92,6 +91,9 @@ kubectl exec -it $(kubectl get statefulset -o name) -- psql -U $DB_USER
 # List rows
 SELECT * FROM `<TABLE_NAME>`;
 
+# Check the data in kubectl
+kubectl exec -it $(kubectl get statefulset -o name) -- sh
+cd var/lib/post*/data
 
 
 
