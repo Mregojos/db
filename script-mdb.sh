@@ -97,6 +97,7 @@ cd /tmp/...
 kubectl exec -it $(kubectl get statefulset -o name) -- sh
 # mysql
 mysqldump -u user --databases user -p > backup.sql
+kubectl cp <...>
 
 # Delete Persistent Volume
 kubectl delete $(kubectl get statefulset -o name)
