@@ -2,7 +2,10 @@
 sh kubectl-minikube.sh
 
 # Create a sample deployment.yaml
-sh manifest/deployment.sh
+# sh manifest/deployment.sh
+
+# Environment
+source env.sh
 
 # Create a sample psql.yaml (Deployment Kind)
 sh psql/psql-deployment.sh
@@ -13,7 +16,7 @@ kubectl apply -f psql/psql-service.yaml
 # Expose
 # kubectl expose deployment.apps/psql-deployment
 # Port-forwarding
-kubectl port-forward service/psql-service : --address 
+kubectl port-forward service/psql-service $DB_PORT:$DB_PORT --address $ADDRESS
 # Watch
 watch kubectl get all
 
