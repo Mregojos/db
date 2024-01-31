@@ -34,7 +34,7 @@ kubectl get statefulset
 kubectl port-forward service/mdb-service $DB_PORT:$MDB_TARGET_PORT --address $ADDRESS
 
 # Test the DB
-# make run_test
+make run_test_mdb
 
 # Port-forwarding using pods
 # First Pod

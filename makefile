@@ -11,3 +11,7 @@ run_test:
 	sh test/test.sh
 	python test/test.py
 
+
+run_test_mdb:
+	sh test/test_mdb.sh
+	python test/test_mdb.py
