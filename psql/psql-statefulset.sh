@@ -16,6 +16,10 @@ spec:
       labels:
         app: psql
     spec:
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: psql-data
       containers:
       - name: postgres
         image: postgres:latest
@@ -33,10 +37,7 @@ spec:
         - name: data
           mountPath: /var/lib/postgresql/data
           
-    volumes:
-    - name: data
-      persistentVolumeClaim:
-        claimName: psql-data
+
 
 # kubectl exec -it <deployment name> -- psql -U User -d postgres
 

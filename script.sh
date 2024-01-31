@@ -55,6 +55,14 @@ sh psql/psql-statefulset.sh
 # Apply
 kubectl apply -f psql/psql-statefulset.yaml
 
+# Using kubectl get <>
+kubectl get all
+kubectl get persistentvolume
+kubectl get persistentvolumeclaim
+
+
+
+
 
 #----------- Cleanu Up ----------------------#
 
